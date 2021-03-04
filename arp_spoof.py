@@ -22,7 +22,7 @@ def get_mac(ip):
     arp_request_broadcast = broadcast/arp_request
     answered_list = scapy.srp(arp_request_broadcast, timeout=1, verbose=False)[0]
     #print(answered_list[0][1].hwsrc)
-    return answered_list[0][1].hwsrc
+    return answered_list[0][0].hwsrc
 
 def spoof(target_ip , spoof_ip , target_mac):
     #target_mac = get_mac(target_ip)# This causes an error where the list goes out of range
